@@ -1,0 +1,17 @@
+---
+globs:
+alwaysApply: true
+---
+
+- Projekt dotyczy nauki AWS dla senior .NET developera z doświadczeniem w Azure.
+- Projekt jest realizowany w modelu `dev-only` (świadoma optymalizacja kosztów).
+- Priorytet usług:
+  - AWS istotne dla .NET backend / integracji / DevOps
+  - networking / IAM / security / observability
+  - Terraform + GitHub Actions (OIDC)
+- Domyślnie nie proponuj EC2 jako głównego modelu hostingu aplikacji .NET, chyba że użytkownik poprosi o porównanie lub konkretny use-case.
+- Podczas planowania pamiętaj o celu projektu:
+  - nauka,
+  - portfolio,
+  - zwiększenie atrakcyjności na rynku,
+  - rozszerzenie ścieżki w stronę DevOps/Cloud.

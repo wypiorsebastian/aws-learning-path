@@ -1,0 +1,14 @@
+---
+globs:
+alwaysApply: true
+---
+
+- Źródłem prawdy dla zakresu projektu jest roadmapa:
+  - `docs/roadmap/aws-course-roadmap-operational-0-24.md`
+- Przed rozpoczęciem tygodnia lub taska najpierw odczytaj odpowiednią sekcję `Wxx` z roadmapy.
+- Nie rozszerzaj zakresu tygodnia bez jawnego oznaczenia tego jako:
+  - `P3 / stretch`, albo
+  - notatka o zmianie zakresu w `docs/weekly/Wxx/summary.md`.
+- Taski tygodnia muszą mapować się do numeracji `Wxx-Tyy`.
+- DoD (Definition of Done) tygodnia ma być oceniany względem roadmapy, a nie „subiektywnego poczucia”.
+@docs/roadmap/aws-course-roadmap-operational-0-24.md

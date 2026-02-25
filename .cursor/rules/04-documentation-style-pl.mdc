@@ -1,0 +1,24 @@
+---
+globs:
+  - "docs/**/*.md"
+alwaysApply: false
+---
+
+- Dokumentacja i notatki są pisane po polsku.
+- Pisz konkretnie, bez ogólników typu „dodaj wpis”, „skonfiguruj coś”.
+- Preferuj instrukcje krok po kroku i jednoznaczne nazwy artefaktów.
+- Dla notatek technicznych (runbook, troubleshooting, wiedza) używaj spójnych sekcji:
+  - `Przeznaczenie`
+  - `Kluczowe fakty`
+  - `Jak to działa pod maską`
+  - `Operacyjny flow`
+  - `Pułapki`
+- W sekcjach `Jak to działa pod maską` i `Operacyjny flow` stosuj schemat:
+  - **Co robimy → Po co → Jak poznać, że działa**
+- Gdy opisujesz problem lub diagnozę, rozdzielaj:
+  - objaw,
+  - hipotezę,
+  - test diagnostyczny,
+  - wynik,
+  - root cause,
+  - fix.

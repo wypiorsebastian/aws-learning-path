@@ -1,0 +1,19 @@
+---
+globs:
+  - "infra/terraform/**/*.tf"
+  - "infra/terraform/**/*.tfvars"
+  - ".github/workflows/**/*.yml"
+  - ".github/workflows/**/*.yaml"
+alwaysApply: false
+---
+
+- Przy analizie plików Terraform / GitHub Actions:
+  - najpierw wyjaśnij cel i wpływ zmiany,
+  - dopiero potem proponuj edycję (chyba że użytkownik wyraźnie prosi o kod).
+- W dokumentacji zmian zawsze odnotuj:
+  - co zostało zmienione,
+  - po co,
+  - jak zweryfikować,
+  - jakie ryzyko / pułapki.
+- Jeśli proponujesz komendy shellowe, preferuj składnię Linux (użytkownik pracuje głównie na Linuxie).
+- Jeśli operacja może generować koszty AWS, oznacz to wyraźnie i zaproponuj cleanup / destroy.

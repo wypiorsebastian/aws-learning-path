@@ -1,0 +1,18 @@
+---
+globs:
+  - "docs/roadmap/**/*.md"
+  - "docs/weekly/**/*.md"
+alwaysApply: false
+---
+
+- Przy edycji roadmapy i plików tygodniowych zachowaj numerację i spójność identyfikatorów:
+  - tygodnie: `W00..W24`
+  - taski: `Wxx-T01..`
+  - sesje: `Wxx-D1..D5`
+- Nie usuwaj historii pracy z `log.md`; dopisuj wpisy chronologicznie.
+- `docs/weekly/index.md` ma być lekkim dashboardem:
+  - status tygodnia,
+  - aktywny task,
+  - blocker (jeśli istnieje),
+  - następny krok.
+- `summary.md` tygodnia ma być wypełniany na końcu tygodnia lub w trakcie domykania.

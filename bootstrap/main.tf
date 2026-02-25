@@ -49,7 +49,7 @@ resource "aws_iam_role" "github_actions_role" {
       Principal = { Federated = aws_iam_openid_connect_provider.github.arn },
       Condition = {
         StringLike = {
-          "token.actions.githubusercontent.com:sub": "repo:TWOJA_NAZWA_UZYTKOWNIKA/REPO:*"
+          "token.actions.githubusercontent.com:sub": "repo:wypiorsebastian/aws-learning-path:*"
         }
       }
     }]

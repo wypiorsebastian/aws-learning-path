@@ -1,0 +1,31 @@
+---
+globs:
+alwaysApply: true
+---
+
+- Każdy tydzień ma własny folder: `docs/weekly/Wxx/`
+- Obowiązkowe pliki tygodnia:
+  - `plan.md`
+  - `tasks.md`
+  - `log.md`
+  - `evidence.md`
+  - `questions.md`
+  - `summary.md`
+- Dodatkowo istnieje lekki dashboard:
+  - `docs/weekly/index.md`
+- Dozwolone statusy zadań:
+  - `TODO`
+  - `W_TRAKCIE`
+  - `DONE`
+  - `BLOCKED`
+  - `SKIPPED`
+- Każdy task w `tasks.md` musi zawierać co najmniej:
+  - `TaskId`
+  - `Status`
+  - `Priorytet`
+  - `Typ`
+  - `Cel`
+  - `Estymata`
+  - `Verification`
+  - `Evidence`
+- Wpisy w `log.md` powinny zawierać znacznik czasu i powiązany `TaskId`.

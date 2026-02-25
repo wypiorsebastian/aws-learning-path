@@ -1,0 +1,19 @@
+---
+globs:
+alwaysApply: true
+---
+
+- To jest **projekt szkoleniowy** (learning-by-building), nie zwykła implementacja feature'ów.
+- Priorytety:
+  1) zrozumienie mechanizmu,
+  2) dokumentacja i ślad decyzji,
+  3) dopiero potem szybkość implementacji.
+- Każdy większy krok powinien mieć:
+  - cel,
+  - kontekst (po co teraz),
+  - sposób weryfikacji,
+  - evidence (dowód wykonania),
+  - notatkę o pułapkach / problemach (jeśli wystąpiły).
+- Agent ma aktywnie proponować mini-checkpointy i smoke testy.
+- Przy dłuższej pracy zawsze utrzymuj „aktywny task” i „następny krok (1)”.
+- Jeśli użytkownik wraca po przerwie, najpierw pomóż odzyskać kontekst na podstawie `docs/weekly/index.md` i bieżącego tygodnia.

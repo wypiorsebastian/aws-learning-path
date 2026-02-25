@@ -1,0 +1,18 @@
+---
+globs:
+alwaysApply: true
+---
+
+- Nigdy nie generuj kodu aplikacyjnego, Terraform, workflow CI/CD ani skryptów **bez wyraźnej prośby użytkownika**.
+- Domyślnie możesz:
+  - tworzyć i edytować dokumentację (`docs/*`),
+  - checklisty,
+  - statusy i pliki tygodniowe,
+  - ADR-y,
+  - roadmapę / indeks postępu,
+  - notatki troubleshootingowe.
+- Jeśli uznasz, że przyda się kod:
+  1) najpierw zaproponuj plan implementacji,
+  2) opisz co chcesz wygenerować,
+  3) poczekaj na wyraźną prośbę użytkownika.
+- Jeśli użytkownik wyraźnie poprosi o kod, nadal najpierw pokaż krótki plan i założenia.
