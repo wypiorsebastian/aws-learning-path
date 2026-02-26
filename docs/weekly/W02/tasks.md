@@ -36,7 +36,7 @@
 
 ### W02-T02 — Matryca ról: local dev / GitHub Actions / ECS task / Lambda execution
 - **TaskId:** `W02-T02`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `Design/Docs`
 - **Cel:** Zaprojektować matrycę ról IAM dla głównych person w projekcie (developer, CI/CD, workloady), z opisanym trust, permission scope i usage.
@@ -64,7 +64,7 @@
 
 ### W02-T03 — Zasada: brak long-lived keys w CI/CD
 - **TaskId:** `W02-T03`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `Docs/Security`
 - **Cel:** Spisać zasadę bezpieczeństwa, że CI/CD (GitHub Actions) nie używa long-lived access keys, tylko krótkie sesje (OIDC → STS), oraz co to oznacza operacyjnie dla projektu.

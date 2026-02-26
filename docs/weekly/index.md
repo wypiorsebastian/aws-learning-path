@@ -4,20 +4,20 @@
 Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of truth**, a ten plik służy do nawigacji i odzyskiwania kontekstu.
 
 ## Aktualny tydzień
-- WeekId: `W02`
+- WeekId: `W04`
 - Status: `W_TRAKCIE`
-- Aktywny task: `W02-T01`
+- Aktywny task: `W04-T01`
 - Blocker: `brak`
-- Next step (1): `przeczytaj plan W02 i zacznij W02-T01`
+- Next step (1): `W04-T01: spisz modele przepływu ruchu (Internet→ALB→ECS, ECS→NAT→AWS APIs) — D1`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
 |---|---|---|---|---|
 | W00 | DONE | - | - | `docs/weekly/W00/` |
 | W01 | DONE | - | - | `docs/weekly/W01/` |
-| W02 | W_TRAKCIE | W02-T01 | - | `docs/weekly/W02/` |
-| W03 | TODO | - | - | `docs/weekly/W03/` |
-| W04 | TODO | - | - | `docs/weekly/W04/` |
+| W02 | DONE | - | - | `docs/weekly/W02/` |
+| W03 | DONE | - | - | `docs/weekly/W03/` |
+| W04 | W_TRAKCIE | W04-T01 | - | `docs/weekly/W04/` |
 | W05 | TODO | - | - | `docs/weekly/W05/` |
 | W06 | TODO | - | - | `docs/weekly/W06/` |
 | W07 | TODO | - | - | `docs/weekly/W07/` |
