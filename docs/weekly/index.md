@@ -4,11 +4,11 @@
 Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of truth**, a ten plik służy do nawigacji i odzyskiwania kontekstu.
 
 ## Aktualny tydzień
-- WeekId: `W04`
-- Status: `W_TRAKCIE`
-- Aktywny task: `W04-T01`
+- WeekId: `W08`
+- Status: `TODO`
+- Aktywny task: —
 - Blocker: `brak`
-- Next step (1): `W04-T01: spisz modele przepływu ruchu (Internet→ALB→ECS, ECS→NAT→AWS APIs) — D1`
+- Next step (1): `W08 — Terraform pipeline przez GitHub OIDC (plan/apply w CI/CD)`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -17,10 +17,10 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W01 | DONE | - | - | `docs/weekly/W01/` |
 | W02 | DONE | - | - | `docs/weekly/W02/` |
 | W03 | DONE | - | - | `docs/weekly/W03/` |
-| W04 | W_TRAKCIE | W04-T01 | - | `docs/weekly/W04/` |
-| W05 | TODO | - | - | `docs/weekly/W05/` |
-| W06 | TODO | - | - | `docs/weekly/W06/` |
-| W07 | TODO | - | - | `docs/weekly/W07/` |
+| W04 | DONE | - | - | `docs/weekly/W04/` |
+| W05 | DONE | - | - | `docs/weekly/W05/` |
+| W06 | DONE | - | - | `docs/weekly/W06/` |
+| W07 | DONE | - | - | `docs/weekly/W07/` |
 | W08 | TODO | - | - | `docs/weekly/W08/` |
 | W09 | TODO | - | - | `docs/weekly/W09/` |
 | W10 | TODO | - | - | `docs/weekly/W10/` |

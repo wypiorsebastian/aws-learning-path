@@ -2,3 +2,4 @@
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+infra/terraform/envs/dev/backend.dev.hcl

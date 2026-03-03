@@ -468,153 +468,159 @@ Minimalne sekcje:
 
 ---
 
-## W04 — Routing, IGW, NAT, SG, NACL + start Terraform network-core
+## W04 — Routing, IGW, NAT, SG, NACL — design sieci (bez Terraform)
 
 ### Metadane tygodnia
 - **WeekId:** `W04`
-- **Faza:** `Networking + IaC`
-- **Nazwa:** `Routing i kontrola ruchu w VPC`
-- **Cel tygodnia:** Rozpocząć implementację VPC w Terraform i zrozumieć przepływy ruchu
-- **WhyNow:** Bez routing/SG/NACL późniejszy troubleshooting będzie chaotyczny
-- **Zakres AWS:** Route Tables, IGW, NAT Gateway, SG, NACL
+- **Faza:** `Networking` (design)
+- **Nazwa:** `Routing i kontrola ruchu w VPC — design`
+- **Cel tygodnia:** Zrozumieć przepływy ruchu i zaprojektować sieć (routing, SG, NACL) gotową do implementacji w Terraform
+- **WhyNow:** Bez routing/SG/NACL późniejszy troubleshooting będzie chaotyczny; design przed implementacją (W06+) pozwala nabrać wiedzy Terraform przed kodowaniem
+- **Zakres AWS:** Route Tables, IGW, NAT Gateway, SG, NACL (teoria + design)
 - **Zakres .NET:** Brak
-- **Zakres Terraform / CI-CD:** Moduł `network-core`
+- **Zakres Terraform / CI-CD:** Projekt modułu `network-core` (bez kodu)
 - **Zakres Networking / Security:** Stateful vs stateless controls
 - **Prereq:** W03 design gotowy
-- **Outcome:** `terraform plan` dla podstaw sieci
-- **Artefakty repo:** `infra/terraform/modules/network-core/*`
-- **Evidence:** `terraform validate` + `terraform plan`
+- **Outcome:** Design sieci gotowy do implementacji (modele ruchu, projekt modułu, SG/NACL)
+- **Artefakty repo:** `docs/lessons/W04-*`, `docs/runbooks/network-smoke-tests.md`
+- **Evidence:** Modele przepływu ruchu, projekt modułu `network-core`, tabela SG/NACL, checklisty diagnostyczne
 - **Pułapki:** Route table associations, NACL blokujące ephemeral ports
-- **Koszt/Cleanup:** NAT po apply generuje koszt
-- **DoD:** Plan jest poprawny i zrozumiany
+- **Koszt/Cleanup:** Brak (design only)
+- **DoD:** Design jest zrozumiany i gotowy jako input do implementacji w W06
 
 ### Zadania
 - [ ] **W04-T01 (P1 | Theory | 45m)** — Spisz modele przepływu ruchu (Internet→ALB→ECS, ECS→NAT→AWS APIs)
-- [ ] **W04-T02 (P1 | IaC | 60m)** — Zaimplementuj moduł `network-core` (VPC, subnets, IGW, route tables)
-- [ ] **W04-T03 (P1 | IaC/Security | 30m)** — Dodaj baseline SG i NACL
+- [ ] **W04-T02 (P1 | Design | 60m)** — Zaprojektuj moduł `network-core` (VPC, subnets, IGW, route tables) — interface, outputs, struktura (bez HCL)
+- [ ] **W04-T03 (P1 | Design/Security | 30m)** — Zaprojektuj baseline SG i NACL
 - [ ] **W04-T04 (P2 | Docs | 15m)** — Checklisty diagnostyczne: routing vs SG vs NACL
 
 ### Verification
-- [ ] `terraform fmt`
-- [ ] `terraform validate`
-- [ ] `terraform plan` bez błędów składni/logiki
+- [ ] Modele ruchu spójne z topologią z W03
+- [ ] Projekt modułu zawiera wejścia/wyjścia gotowe pod W05 i moduły aplikacyjne
+- [ ] Tabela SG/NACL spójna z modelami ruchu
 
 ### Evidence
 - `docs/lessons/W04-summary.md`
-- plan output (fragmenty kluczowe)
-- tabela SG/NACL
-
----
-
-## W05 — VPC Endpoints, PrivateLink, Flow Logs
-
-### Metadane tygodnia
-- **WeekId:** `W05`
-- **Faza:** `Networking+`
-- **Nazwa:** `Prywatny dostęp do usług AWS i widoczność ruchu`
-- **Cel tygodnia:** Zmniejszyć zależność od NAT dla wybranych usług i zwiększyć obserwowalność sieci
-- **WhyNow:** To element dojrzałości cloud/networking i dobry fundament pod security
-- **Zakres AWS:** VPC Endpoints (Gateway/Interface), PrivateLink, VPC Flow Logs
-- **Zakres .NET:** Brak
-- **Zakres Terraform / CI-CD:** Moduł `network-endpoints`
-- **Zakres Networking / Security:** Endpointy i DNS prywatny (awareness)
-- **Prereq:** W04 moduł network-core
-- **Outcome:** Endpoint S3/DynamoDB + (min. 1 interface endpoint lub szczegółowa notatka) + Flow Logs
-- **Artefakty repo:** `modules/network-endpoints`, `runbooks/network-smoke-tests.md`
-- **Evidence:** Apply + route table associations + log entries
-- **Pułapki:** Private DNS dla interface endpoint, SG endpointów, koszt endpointów interface
-- **Koszt/Cleanup:** Interface endpoints kosztują godzinowo
-- **DoD:** Rozumiesz i potrafisz zastosować Gateway Endpoint; interface endpoint przynajmniej na poziomie praktyki bazowej
-
-### Zadania
-- [ ] **W05-T01 (P1 | Theory | 45m)** — Porównanie: Gateway Endpoint vs Interface Endpoint vs PrivateLink
-- [ ] **W05-T02 (P1 | IaC | 45m)** — Dodaj gateway endpoint dla S3 (opcjonalnie też DynamoDB)
-- [ ] **W05-T03 (P1 | Observability | 30m)** — Włącz VPC Flow Logs (CloudWatch lub S3)
-- [ ] **W05-T04 (P2 | IaC/Security | 30m)** — Dodaj interface endpoint (np. Secrets Manager/SSM) lub dokładny plan implementacji
-- [ ] **W05-T05 (P2 | Docs | 15m)** — Uzupełnij network smoke tests
-
-### Verification
-- [ ] Endpoint S3 istnieje i jest skojarzony z route tables
-- [ ] Flow Logs generują wpisy
-- [ ] Masz notatkę „kiedy który endpoint”
-
-### Evidence
-- `docs/lessons/W05-summary.md`
+- `docs/lessons/W04-traffic-models.md`, `docs/lessons/W04-network-core-module-design.md`, `docs/lessons/W04-sg-nacl-baseline.md`
 - `docs/runbooks/network-smoke-tests.md`
 
 ---
 
-## W06 — Terraform foundations i standardy modułów
+## W05 — VPC Endpoints, PrivateLink, Flow Logs — design i teoria
 
 ### Metadane tygodnia
-- **WeekId:** `W06`
-- **Faza:** `IaC`
-- **Nazwa:** `Struktura Terraform i standardy modułów`
-- **Cel tygodnia:** Ustalić spójny standard Terraform dla całego projektu
-- **WhyNow:** Liczba zasobów szybko wzrośnie; bez standardów repo zrobi się nieczytelne
-- **Zakres AWS:** Pośrednio (abstrakcje zasobów)
+- **WeekId:** `W05`
+- **Faza:** `Networking+` (design)
+- **Nazwa:** `Prywatny dostęp do usług AWS i widoczność ruchu — design`
+- **Cel tygodnia:** Zrozumieć VPC Endpoints, PrivateLink i Flow Logs oraz zaprojektować moduł `network-endpoints` gotowy do implementacji w W07
+- **WhyNow:** Element dojrzałości cloud/networking i fundament pod security; design przed implementacją (W07) pozwala nabrać wiedzy Terraform w W06
+- **Zakres AWS:** VPC Endpoints (Gateway/Interface), PrivateLink, VPC Flow Logs (teoria + design)
 - **Zakres .NET:** Brak
-- **Zakres Terraform / CI-CD:** Moduły, naming, variables, outputs, tagging conventions
-- **Zakres Networking / Security:** Brak nowych usług
-- **Prereq:** W04-W05
-- **Outcome:** Czytelna architektura Terraform repo gotowa pod dalsze moduły
-- **Artefakty repo:** `infra/terraform/README.md`, `modules/_standards.md`
-- **Evidence:** `fmt/validate` na modułach
-- **Pułapki:** Over-abstraction, moduły zbyt „generyczne”
-- **Koszt/Cleanup:** Brak
-- **DoD:** Każdy moduł ma standardowy szkielet i konwencje
+- **Zakres Terraform / CI-CD:** Projekt modułu `network-endpoints` (bez kodu)
+- **Zakres Networking / Security:** Endpointy i DNS prywatny (awareness)
+- **Prereq:** W04 design sieci (modele ruchu, projekt network-core)
+- **Outcome:** Design modułu `network-endpoints` (Gateway S3/DynamoDB, Interface Secrets/SSM, Flow Logs) + notatka „kiedy który endpoint”
+- **Artefakty repo:** `docs/lessons/W05-*`, rozszerzenie `docs/runbooks/network-smoke-tests.md`
+- **Evidence:** Notatka Gateway vs Interface vs PrivateLink, projekt modułu network-endpoints, tabela „kiedy który endpoint”
+- **Pułapki:** Private DNS dla interface endpoint, SG endpointów, koszt endpointów interface
+- **Koszt/Cleanup:** Brak (design only)
+- **DoD:** Rozumiesz Gateway vs Interface Endpoint; design modułu network-endpoints gotowy jako input do implementacji w W07
 
 ### Zadania
-- [ ] **W06-T01 (P1 | Design/IaC | 45m)** — Ustal strukturę `modules/` i `envs/dev/`
-- [ ] **W06-T02 (P1 | IaC | 45m)** — Ustal standard `variables.tf`, `locals.tf`, `outputs.tf`, tagging
-- [ ] **W06-T03 (P1 | Docs | 30m)** — `modules/_standards.md` + przykładowy template modułu
-- [ ] **W06-T04 (P2 | Docs | 30m)** — Zasady refaktoryzacji modułów (kiedy wydzielać/scalać)
+- [ ] **W05-T01 (P1 | Theory | 45m)** — Porównanie: Gateway Endpoint vs Interface Endpoint vs PrivateLink
+- [ ] **W05-T02 (P1 | Design | 45m)** — Zaprojektuj moduł `network-endpoints`: Gateway S3/DynamoDB, trasy w route table
+- [ ] **W05-T03 (P1 | Design/Observability | 30m)** — Zaprojektuj VPC Flow Logs (CloudWatch lub S3) — gdzie, co logować
+- [ ] **W05-T04 (P2 | Design/Security | 30m)** — Zaprojektuj interface endpoint (Secrets Manager/SSM): subnets, SG
+- [ ] **W05-T05 (P2 | Docs | 15m)** — Uzupełnij network smoke tests (checklisty pod endpointy)
 
 ### Verification
-- [ ] Co najmniej 1–2 istniejące moduły dostosowane do standardu
-- [ ] README IaC opisuje strukturę i sposób użycia
+- [ ] Notatka „kiedy który endpoint” (Gateway vs Interface)
+- [ ] Projekt modułu network-endpoints spójny z outputami network-core (private_route_table_id, private_subnet_ids)
+- [ ] Flow Logs — projekt (destination, retention)
 
 ### Evidence
-- `docs/lessons/W06-summary.md`
-- `infra/terraform/README.md`
+- `docs/lessons/W05-summary.md`
+- `docs/lessons/W05-endpoints-design.md` (lub w summary)
+- `docs/runbooks/network-smoke-tests.md` (rozszerzony)
 
 ---
 
-## W07 — Terraform remote state (S3) + pierwszy pełny deploy sieci
+## W06 — Terraform backend + foundations + implementacja modułu network-core
+
+### Metadane tygodnia
+- **WeekId:** `W06`
+- **Faza:** `IaC` (backend + fundamenty + pierwsza implementacja)
+- **Nazwa:** `Terraform backend (S3 + use_lockfile), foundations i implementacja network-core`
+- **Cel tygodnia:** Bootstrappować remote state (S3 + natywny lock `use_lockfile`) zgodnie z best practices, skonfigurować backend i zaimplementować moduł `network-core` (VPC, subnets, IGW, NAT, route tables, SG, NACL)
+- **WhyNow:** Design z W04/W05 gotowy; wyjście z fazy planowania — infrastruktura pod CI/CD (state + lock) musi istnieć przed pierwszym apply; brak migracji, brak błędów z local state
+- **Zakres AWS:** S3 (backend bucket), VPC, subnets, IGW, NAT Gateway, route tables, SG, NACL
+- **Zakres .NET:** Brak
+- **Zakres Terraform / CI-CD:** `backend "s3"` (bucket, use_lockfile), provider AWS, moduły, variables, outputs, tagging; implementacja `network-core`; gotowość pod W08 (GitHub Actions)
+- **Zakres Networking / Security:** Wdrożenie designu z W04
+- **Prereq:** W04–W05 (design sieci i endpointów)
+- **Outcome:** Remote state działa od dnia 1; moduł `network-core` zaimplementowany; `terraform fmt/validate/plan` bez błędów; gotowość do apply w W07
+- **Artefakty repo:** `infra/terraform/modules/network-core/*`, `envs/dev/backend.tf`, `infra/terraform/README.md`, `modules/_standards.md`, `docs/runbooks/terraform-backend-bootstrap.md`
+- **Evidence:** Bucket S3 istnieje; `terraform state list` (pusty) działa; `terraform plan` dla network-core
+- **Pułapki:** Bootstrap chicken-egg; brak use_lockfile → równoległe runy w CI; over-abstraction; route table associations
+- **Koszt/Cleanup:** S3 minimalny; brak apply (plan only; apply w W07)
+- **DoD:** Backend S3 (use_lockfile) skonfigurowany; Terraform foundations zrozumiane; moduł network-core istnieje i przechodzi `fmt/validate/plan`
+
+### Zadania
+- [ ] **W06-T01 (P1 | IaC | 45m)** — Bootstrap bucket S3 dla Terraform state (enterprise: versioning, encryption SSE-S3, block public access; lock: use_lockfile w backendzie)
+- [ ] **W06-T02 (P1 | IaC | 30m)** — Skonfiguruj backend `"s3"` w `envs/dev` (bucket, key, region, use_lockfile = true); Terraform basics (provider, variables, outputs, moduły, `fmt/validate/plan`)
+- [ ] **W06-T03 (P1 | IaC | 60m)** — Zaimplementuj moduł `network-core` (VPC, subnets, IGW, NAT, route tables, SG) — na bazie designu z W04
+- [ ] **W06-T04 (P1 | IaC | 30m)** — Ustal standard `variables.tf`, `locals.tf`, `outputs.tf`, tagging; `modules/_standards.md`
+- [ ] **W06-T05 (P2 | Docs | 30m)** — `infra/terraform/README.md` + `docs/runbooks/terraform-backend-bootstrap.md` (procedura bootstrapu, IAM pod CI/CD w W08)
+
+### Verification
+- [ ] Bucket S3 istnieje; bucket ma versioning, encryption, block public access
+- [ ] `terraform init` w `envs/dev` używa backend S3
+- [ ] `terraform fmt`, `terraform validate`, `terraform plan` dla network-core bez błędów
+
+### Evidence
+- `docs/lessons/W06-summary.md`
+- `docs/runbooks/terraform-backend-bootstrap.md`
+- `infra/terraform/modules/network-core/*` (pliki HCL)
+- `infra/terraform/README.md`, `modules/_standards.md`
+
+---
+
+## W07 — Moduł network-endpoints + deploy sieci do dev
 
 ### Metadane tygodnia
 - **WeekId:** `W07`
 - **Faza:** `IaC Deploy`
-- **Nazwa:** `Remote state i deploy VPC do dev`
-- **Cel tygodnia:** Przenieść state do S3 i wykonać pełny deploy warstwy sieciowej
-- **WhyNow:** To warunek przejścia do CI/CD i hostingu
-- **Zakres AWS:** S3 (backend), IAM (uprawnienia do backendu)
+- **Nazwa:** `network-endpoints i deploy VPC do dev`
+- **Cel tygodnia:** Zaimplementować moduł `network-endpoints` (na bazie designu W05) i wykonać pełny deploy warstwy sieciowej do dev
+- **WhyNow:** Backend S3 (use_lockfile) gotowy z W06; design z W05 gotowy; pierwszy realny apply — sieć w AWS
+- **Zakres AWS:** VPC Endpoints (Gateway S3/DynamoDB, Interface Secrets/SSM), Flow Logs, deploy sieci
 - **Zakres .NET:** Brak
-- **Zakres Terraform / CI-CD:** `backend "s3"`, `init -migrate-state`, apply flow
-- **Zakres Networking / Security:** Deploy VPC baseline
-- **Prereq:** W06
-- **Outcome:** Sieć dev istnieje i jest zarządzana przez Terraform remote state
-- **Artefakty repo:** `envs/dev/backend.*`, `runbooks/terraform-backend-bootstrap.md`
-- **Evidence:** `terraform state list`, widoczne zasoby w AWS
-- **Pułapki:** Bootstrap backendu, migracja stanu, rozjazd konfiguracji
-- **Koszt/Cleanup:** NAT, endpoints, flow logs mogą już generować koszty
-- **DoD:** Remote state działa; `plan` jest stabilny po apply
+- **Zakres Terraform / CI-CD:** Moduł `network-endpoints`, integracja z `network-core`, `terraform apply`; remote state z W06 — brak migracji
+- **Zakres Networking / Security:** Deploy VPC + endpoints + Flow Logs; weryfikacja modelu ruchu
+- **Prereq:** W06 (backend S3 skonfigurowany, moduł network-core)
+- **Outcome:** Sieć dev z endpointami istnieje; `terraform state list` pokazuje zasoby; gotowość pod CI/CD (W08)
+- **Artefakty repo:** `infra/terraform/modules/network-endpoints/*`, `envs/dev/` (stack network-core + network-endpoints)
+- **Evidence:** Zasoby VPC i endpointów w AWS; `terraform state list`; `terraform plan` stabilny po apply
+- **Pułapki:** Private DNS dla interface endpoint; SG endpointów; koszt NAT/endpoints/Flow Logs
+- **Koszt/Cleanup:** NAT, endpoints, Flow Logs generują koszt — ADR-0002: cleanup po sesji
+- **DoD:** network-core + network-endpoints wdrożone; `terraform plan` po apply bez driftu; smoke tests udokumentowane
 
 ### Zadania
-- [ ] **W07-T01 (P1 | IaC | 45m)** — Bootstrap bucket S3 dla Terraform state
-- [ ] **W07-T02 (P1 | IaC | 30m)** — Przenieś state do backendu S3 (`init -migrate-state`)
-- [ ] **W07-T03 (P1 | Deploy | 45m)** — `terraform apply` dla network stack w `envs/dev`
-- [ ] **W07-T04 (P1 | Docs/Troubleshooting | 30m)** — Runbook: smoke tests sieci po deployu
+- [ ] **W07-T01 (P1 | IaC | 45m)** — Zaimplementuj moduł `network-endpoints` (Gateway S3/DynamoDB, Interface Secrets/SSM, Flow Logs) — na bazie designu W05
+- [ ] **W07-T02 (P1 | IaC | 15m)** — Zintegruj network-endpoints z network-core w `envs/dev` (outputs → variables)
+- [ ] **W07-T03 (P1 | Deploy | 45m)** — `terraform apply` dla network stack (network-core + network-endpoints) w `envs/dev`
+- [ ] **W07-T04 (P1 | Docs/Verification | 30m)** — Runbook: smoke tests sieci po deployu (VPC, routing, endpoints, Flow Logs)
+- [ ] **W07-T05 (P2 | Docs | 15m)** — Uzupełnij `docs/lessons/W07-summary.md` — co zostało wdrożone, pułapki, gotowość pod W08
 
 ### Verification
-- [ ] `terraform state list` działa z remote backend
-- [ ] Zasoby VPC widoczne w AWS
-- [ ] `terraform plan` po apply nie pokazuje driftu (lub drift jest wyjaśniony)
+- [ ] `terraform state list` pokazuje zasoby network-core i network-endpoints
+- [ ] Zasoby VPC, endpointów i Flow Logs widoczne w AWS
+- [ ] `terraform plan` po apply nie pokazuje driftu (lub drift wyjaśniony)
+- [ ] Smoke tests sieci (runbook) wykonane lub udokumentowane
 
 ### Evidence
 - `docs/lessons/W07-summary.md`
-- `docs/runbooks/terraform-backend-bootstrap.md`
-- `docs/runbooks/network-smoke-tests.md`
+- `docs/runbooks/network-smoke-tests.md` (rozszerzony)
 
 ---
 
@@ -1279,7 +1285,7 @@ Minimalne sekcje:
 - **Lambda + API Gateway:** W20
 
 ## Data / Integracje
-- **S3:** W07 (Terraform state), W17 (app storage)
+- **S3:** W06 (Terraform state backend), W17 (app storage)
 - **RDS PostgreSQL:** W16
 - **SQS + DLQ:** W18
 - **SNS / EventBridge:** W19

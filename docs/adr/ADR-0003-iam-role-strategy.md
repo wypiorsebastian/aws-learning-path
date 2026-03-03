@@ -54,7 +54,7 @@ Dlatego w tym projekcie **nie używamy long-lived access keys dla CI/CD**.
 - **Nie tworzymy IAM userów ani access keys „dla CI/CD”.** Pipeline nie loguje się jako żaden IAM user z long-lived keys.
 - **Wszystkie workflowy wymagające dostępu do AWS** używają kroku assume-role przez OIDC (np. `aws-actions/configure-aws-credentials@v4` z `role-to-assume` i `web-identity-token`).
 - **Trust policy roli dla GitHub Actions** zawężamy co najmniej do konkretnego repozytorium; zalecane zawężenie do branchy (np. `main`, `develop`) lub środowisk (environments), żeby uniknąć assume roli z forków lub dowolnego brancha.
-- **Permission scope roli CI/CD** utrzymujemy w duchu least privilege: tylko to, co potrzebne do Terraform (S3 state, DynamoDB lock, zarządzanie zasobami w dev). Szczegóły w `docs/runbooks/iam-role-matrix.md`.
+- **Permission scope roli CI/CD** utrzymujemy w duchu least privilege: tylko to, co potrzebne do Terraform (S3 state + lock plikowy `.tflock` przy use_lockfile, zarządzanie zasobami w dev). Szczegóły w `docs/runbooks/iam-role-matrix.md`.
 
 ---
 
@@ -62,7 +62,7 @@ Dlatego w tym projekcie **nie używamy long-lived access keys dla CI/CD**.
 
 - W matrycy ról (`docs/runbooks/iam-role-matrix.md`) wiersz **GitHub Actions (CI/CD)** opisuje:
   - **Trust:** OIDC, tylko token z GitHub Actions dla konkretnego repo (i opcjonalnie branch).
-  - **Permission scope:** least privilege pod Terraform (S3, DynamoDB, operacje na zasobach w dev).
+  - **Permission scope:** least privilege pod Terraform (S3, w tym .tflock przy use_lockfile; operacje na zasobach w dev).
   - **Usage:** workflowy `terraform plan` na PR, `terraform apply` na main; żadnych long-lived keys w secrets.
 - Ta zasada jest spójna z pozostałymi wierszami matrycy: local developer może używać IAM usera (lub w przyszłości SSO), ECS/Lambda używają ról serwisowych — tylko CI/CD jest explicite „OIDC-only, zero long-lived keys”.
 

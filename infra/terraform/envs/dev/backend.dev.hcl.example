@@ -1,0 +1,7 @@
+# Skopiuj do backend.dev.hcl i uzupełnij bucket (wynik: cd ../../bootstrap && terraform output -raw s3_bucket_name)
+# backend.dev.hcl jest w .gitignore
+# key = ścieżka w bucketcie; definiuje separację env/stack (np. jeden stack „platform” w dev)
+
+bucket = "orderflow-dev-terraform-state-PODAJ_ACCOUNT_ID"
+key    = "dev/terraform.tfstate"
+region = "eu-central-1"

@@ -11,7 +11,7 @@
 
 ### W04-T01 — Modele przepływu ruchu (Internet→ALB→ECS, ECS→NAT→AWS APIs)
 - **TaskId:** `W04-T01`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `Theory/Docs`
 - **Cel:** Spisać i uporządkować modele przepływu ruchu w projektowanej VPC, które będą podstawą dla routingu i SG/NACL.
@@ -30,7 +30,7 @@
 
 ### W04-T02 — Szkic modułu `network-core` (VPC, subnets, IGW, route tables)
 - **TaskId:** `W04-T02`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `IaC/Design`
 - **Cel:** Zaprojektować strukturę i odpowiedzialności modułu Terraform `network-core` (bez konieczności generowania kodu, dopóki tego nie zażądasz).
@@ -50,7 +50,7 @@
 
 ### W04-T03 — Baseline SG i NACL pod VPC dev
 - **TaskId:** `W04-T03`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `IaC/Security/Design`
 - **Cel:** Zaprojektować minimalny, sensowny zestaw Security Groups i NACL dla VPC dev (ALB, ECS/Lambda, RDS, subnety public/private).
@@ -70,7 +70,7 @@
 
 ### W04-T04 — Checklisty diagnostyczne: routing vs SG vs NACL
 - **TaskId:** `W04-T04`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P2`
 - **Typ:** `Docs/Runbook`
 - **Cel:** Przygotować checklistę diagnostyczną do debugowania problemów sieciowych (routing, SG, NACL) dla VPC dev.
