@@ -5,7 +5,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 
 ## Aktualny tydzień
 - WeekId: `W08`
-- Status: `TODO`
+- Status: `W_TRAKCIE`
 - Aktywny task: —
 - Blocker: `brak`
 - Next step (1): `W08 — Terraform pipeline przez GitHub OIDC (plan/apply w CI/CD)`
@@ -21,7 +21,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W05 | DONE | - | - | `docs/weekly/W05/` |
 | W06 | DONE | - | - | `docs/weekly/W06/` |
 | W07 | DONE | - | - | `docs/weekly/W07/` |
-| W08 | TODO | - | - | `docs/weekly/W08/` |
+| W08 | W_TRAKCIE | - | - | `docs/weekly/W08/` |
 | W09 | TODO | - | - | `docs/weekly/W09/` |
 | W10 | TODO | - | - | `docs/weekly/W10/` |
 | W11 | TODO | - | - | `docs/weekly/W11/` |

@@ -1,0 +1,46 @@
+name: Terraform Plan (dev)
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'infra/terraform/**'
+
+permissions:
+  id-token: write    # wymagane dla OIDC
+  contents: read     # wymagane dla checkout
+
+jobs:
+  terraform-plan-dev:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_REGION: eu-central-1
+      TF_WORKING_DIR: infra/terraform/envs/dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::292187657518:role/GitHubActionsRole
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform validate
+
+      - name: Terraform Plan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform plan -input=false -no-color
+
