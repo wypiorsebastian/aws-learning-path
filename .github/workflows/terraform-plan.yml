@@ -33,13 +33,22 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init
+      - name: Write backend config for CI
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
-          terraform init -input=false \
-            -backend-config="bucket=${{ vars.TF_BACKEND_BUCKET }}" \
-            -backend-config="key=dev/terraform.tfstate" \
-            -backend-config="region=${{ env.AWS_REGION }}"
+          if [ -z "${{ vars.TF_BACKEND_BUCKET }}" ]; then
+            echo "::error::Zmienna repozytorium TF_BACKEND_BUCKET nie jest ustawiona. Ustaw ją w Settings → Secrets and variables → Actions → Variables."
+            exit 1
+          fi
+          cat << EOF > backend.ci.hcl
+          bucket = "${{ vars.TF_BACKEND_BUCKET }}"
+          key    = "dev/terraform.tfstate"
+          region = "${{ env.AWS_REGION }}"
+          EOF
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -input=false -backend-config=backend.ci.hcl
 
       - name: Terraform Validate
         working-directory: ${{ env.TF_WORKING_DIR }}
