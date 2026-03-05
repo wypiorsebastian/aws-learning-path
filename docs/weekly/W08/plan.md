@@ -145,3 +145,5 @@ Stretch (opcjonalne) na ten tydzień:
 
 Po spełnieniu DoD W08 kolejnym krokiem będzie W09 — szkielet aplikacji .NET i podstawowy CI, już korzystający z wypracowanych wzorców OIDC/GitHub Actions.
 
+Stretch na W09 (opcjonalnie): poprawa DX pipeline Terraform — dodanie komentarza z `terraform plan` do PR oraz ewentualne dalsze optymalizacje cache/CI.
+

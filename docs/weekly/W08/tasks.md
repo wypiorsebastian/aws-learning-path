@@ -117,7 +117,7 @@
 ### W08-T04 — Runbook pipeline IaC + troubleshooting OIDC
 
 - **TaskId:** `W08-T04`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P2`
 - **Typ:** `Docs`
 - **Cel:** Udokumentować pipeline IaC (plan + apply) i typowe problemy z OIDC / IAM w formie runbooka operacyjnego.
