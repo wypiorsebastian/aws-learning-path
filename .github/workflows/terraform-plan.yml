@@ -15,6 +15,7 @@ permissions:
 jobs:
   terraform-plan-dev:
     runs-on: ubuntu-latest
+    environment: dev
 
     env:
       AWS_REGION: eu-central-1
