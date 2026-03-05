@@ -24,15 +24,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials via OIDC
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::292187657518:role/GitHubActionsRole
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-
       - name: Write backend config for CI
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
@@ -45,6 +36,15 @@ jobs:
           key    = "dev/terraform.tfstate"
           region = "${{ env.AWS_REGION }}"
           EOF
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::292187657518:role/GitHubActionsRole
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
