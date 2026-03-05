@@ -82,7 +82,7 @@
 ### W08-T03 — Workflow `terraform apply` na `main` (kontrolowany)
 
 - **TaskId:** `W08-T03`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `CI/CD`
 - **Cel:** Przygotować bezpieczny workflow `terraform apply` dla dev, uruchamiany z `main` (lub manualnie), korzystający z OIDC.
