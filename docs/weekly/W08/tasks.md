@@ -14,7 +14,7 @@
 ### W08-T01 — Utwórz OIDC provider i IAM role dla GitHub Actions
 
 - **TaskId:** `W08-T01`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `Security`
 - **Cel:** Skonfigurować w AWS OIDC provider i IAM role dla GitHub Actions, z zawężoną trust policy i minimalnym zakresem uprawnień potrzebnym Terraformowi.
@@ -48,7 +48,7 @@
 ### W08-T02 — Workflow `terraform plan` na PR
 
 - **TaskId:** `W08-T02`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `CI/CD`
 - **Cel:** Przygotować workflow GitHub Actions, który dla PR z infrastrukturą wykonuje `terraform plan` z użyciem OIDC roli z W08-T01.
@@ -148,9 +148,9 @@
 
 ## Verification (zbiorczy checklist z roadmapy)
 
-- [ ] Workflow assume-role przez OIDC działa (rola IAM z W08-T01 przyjmuje tożsamość z GitHub Actions).
-- [ ] `terraform plan` w CI działa na PR (W08-T02).
-- [ ] `terraform apply` działa na merge / manual dispatch (W08-T03), bez statycznych kluczy AWS.
+- [x] Workflow assume-role przez OIDC działa (rola IAM z W08-T01 przyjmuje tożsamość z GitHub Actions).
+- [x] `terraform plan` w CI działa na PR (W08-T02).
+- [x] `terraform apply` działa na merge / manual dispatch (W08-T03), bez statycznych kluczy AWS.
 
 ## Evidence (zbiorczy z roadmapy)
 

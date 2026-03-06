@@ -32,3 +32,13 @@
 /home/seba/Repos/aws-learning-path/src/orders-api/obj/Debug/net10.0/Orders.Api.pdb
 /home/seba/Repos/aws-learning-path/src/orders-api/obj/Debug/net10.0/Orders.Api.genruntimeconfig.cache
 /home/seba/Repos/aws-learning-path/src/orders-api/obj/Debug/net10.0/ref/Orders.Api.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Microsoft.Extensions.DependencyModel.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.AspNetCore.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Extensions.Hosting.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Extensions.Logging.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Formatting.Compact.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Settings.Configuration.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Sinks.Console.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Sinks.Debug.dll
+/home/seba/Repos/aws-learning-path/src/orders-api/bin/Debug/net10.0/Serilog.Sinks.File.dll

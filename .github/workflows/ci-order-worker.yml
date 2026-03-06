@@ -1,0 +1,31 @@
+# CI — order-worker (build + test solution; trigger przy zmianach w order-worker)
+name: CI - order-worker
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/order-worker/**']
+  pull_request:
+    branches: [main]
+    paths: ['src/order-worker/**']
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - name: Restore
+        run: dotnet restore OrderFlow.sln
+
+      - name: Build
+        run: dotnet build OrderFlow.sln --no-restore -c Release
+
+      - name: Test
+        run: dotnet test OrderFlow.sln --no-build -c Release --verbosity normal

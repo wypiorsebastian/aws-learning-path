@@ -1,0 +1,31 @@
+# CI — payments-api (build + test solution; trigger przy zmianach w payments-api)
+name: CI - payments-api
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/payments-api/**']
+  pull_request:
+    branches: [main]
+    paths: ['src/payments-api/**']
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - name: Restore
+        run: dotnet restore OrderFlow.sln
+
+      - name: Build
+        run: dotnet build OrderFlow.sln --no-restore -c Release
+
+      - name: Test
+        run: dotnet test OrderFlow.sln --no-build -c Release --verbosity normal
