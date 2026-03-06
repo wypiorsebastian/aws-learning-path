@@ -2,11 +2,12 @@
 name: CI - orders-api
 
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches: [master]
     paths: ['src/orders-api/**']
   pull_request:
-    branches: [main]
+    branches: [master]
     paths: ['src/orders-api/**']
 
 jobs:

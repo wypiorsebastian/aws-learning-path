@@ -2,11 +2,12 @@
 name: CI - catalog-api
 
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches: [master]
     paths: ['src/catalog-api/**']
   pull_request:
-    branches: [main]
+    branches: [master]
     paths: ['src/catalog-api/**']
 
 jobs:

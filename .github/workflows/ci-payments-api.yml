@@ -2,11 +2,12 @@
 name: CI - payments-api
 
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches: [master]
     paths: ['src/payments-api/**']
   pull_request:
-    branches: [main]
+    branches: [master]
     paths: ['src/payments-api/**']
 
 jobs:
