@@ -29,4 +29,4 @@ jobs:
         run: dotnet build OrderFlow.sln --no-restore -c Release
 
       - name: Test
-        run: dotnet test OrderFlow.sln --no-build -c Release --verbosity normal
+        run: dotnet test src/orders-api/Orders.Api.Tests/Orders.Api.Tests.csproj --no-build -c Release --verbosity normal

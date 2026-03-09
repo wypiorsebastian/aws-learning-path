@@ -81,7 +81,7 @@
 ### W09-T04 — Zapisz architekturę kodu (prosta, pragmatyczna)
 
 - **TaskId:** `W09-T04`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P2`
 - **Typ:** `Docs`
 - **Cel:** Udokumentować aktualną architekturę kodu: jakie projekty, co robią, jak są zorganizowane (solution, shared?), konwencje (health, logging).
@@ -99,9 +99,9 @@
 
 ## Verification (zbiorczy checklist z roadmapy)
 
-- [ ] `dotnet build` OK
-- [ ] `dotnet test` (jeśli są testy startowe) OK
-- [ ] `/health` działa lokalnie dla API
+- [x] `dotnet build` OK
+- [x] `dotnet test` (jeśli są testy startowe) OK
+- [x] `/health` działa lokalnie dla API
 
 ---
 

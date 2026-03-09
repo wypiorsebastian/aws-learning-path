@@ -18,8 +18,8 @@ Dowody wykonania zadań i spełnienia DoD. Roadmapa oczekuje: 2–3 API + worker
 
 ### W09-T04 — Architektura kodu
 - **Oczekiwane:** Dokument opisujący projekty, strukturę, konwencje (prosta, pragmatyczna).
-- **Link / opis:** _(uzupełnić: ścieżka do dokumentu)_
+- **Link / opis:** `docs/architecture/orderflow-code-baseline.md` — przegląd projektów (orders-api, payments-api, catalog-api, order-worker) z odpowiedzialnością w jednym zdaniu; struktura `src/`; konwencje health (GET /health), logging (Serilog + CompactJsonFormatter), CI (workflowy per usługa); weryfikacja (build, test, curl).
 
 ### DoD (roadmapa)
 - **Kryterium:** 2–3 projekty API + worker działają lokalnie i mają health endpointy.
-- **Potwierdzenie:** _(uzupełnić przy domknięciu tygodnia)_
+- **Potwierdzenie:** Spełniony. 3 API + 1 worker w solution; wszystkie API mają GET `/health`; `dotnet build` i `dotnet test` OK; workflowy CI przechodzą. Zob. `docs/weekly/W09/summary.md`.

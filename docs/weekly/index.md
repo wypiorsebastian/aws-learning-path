@@ -4,11 +4,11 @@
 Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of truth**, a ten plik służy do nawigacji i odzyskiwania kontekstu.
 
 ## Aktualny tydzień
-- WeekId: `W09`
-- Status: `W_TRAKCIE`
+- WeekId: `W10`
+- Status: `TODO`
 - Aktywny task: —
 - Blocker: `brak`
-- Next step (1): `W09-T01 — Utworzenie projektów orders-api, payments-api, catalog-api, order-worker (D1 → D2)`
+- Next step (1): `W10-T01 — Dockerfile dla wybranego API (catalog-api lub orders-api); App Runner deploy`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -22,7 +22,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W06 | DONE | - | - | `docs/weekly/W06/` |
 | W07 | DONE | - | - | `docs/weekly/W07/` |
 | W08 | DONE | - | - | `docs/weekly/W08/` |
-| W09 | W_TRAKCIE | - | - | `docs/weekly/W09/` |
+| W09 | DONE | - | - | `docs/weekly/W09/` |
 | W10 | TODO | - | - | `docs/weekly/W10/` |
 | W11 | TODO | - | - | `docs/weekly/W11/` |
 | W12 | TODO | - | - | `docs/weekly/W12/` |
