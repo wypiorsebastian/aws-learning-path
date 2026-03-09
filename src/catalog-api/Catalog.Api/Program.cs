@@ -23,6 +23,22 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+// Log każdego uderzenia w endpoint — rozróżnialne od logów systemowych (LogSource + EventType)
+app.Use(async (context, next) =>
+{
+    await next();
+    var endpoint = context.GetEndpoint();
+    var logger = Log.ForContext("LogSource", "Application")
+        .ForContext("EventType", "EndpointHit");
+    logger.Information(
+        "Endpoint hit: {Method} {Path} -> {EndpointName}, StatusCode: {StatusCode}",
+        context.Request.Method,
+        context.Request.Path,
+        endpoint?.DisplayName ?? "(none)",
+        context.Response.StatusCode);
+});
 
 app.MapGet("/", () => Results.Ok(new { service = appName, environment, status = "ok" }))
     .WithName("Root");
