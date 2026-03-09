@@ -1,0 +1,58 @@
+# Build catalog-api image i push do ECR (W10-T02)
+# Wymaga: rola OIDC (vars.AWS_GITHUB_ACTIONS_ROLE_ARN) z uprawnieniami ECR:
+#   ecr:GetAuthorizationToken oraz na repozytorium catalog-api:
+#   ecr:BatchCheckLayerAvailability, ecr:PutImage, ecr:InitiateLayerUpload,
+#   ecr:UploadLayerPart, ecr:CompleteLayerUpload
+
+name: catalog-api — Build & Push to ECR
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: ['src/catalog-api/**']
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: eu-central-1
+  ECR_REPOSITORY: catalog-api
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Get ECR registry URL
+        id: ecr
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          echo "registry=${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com" >> $GITHUB_OUTPUT
+          echo "repository_url=${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}" >> $GITHUB_OUTPUT
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} | \
+            docker login --username AWS --password-stdin ${{ steps.ecr.outputs.registry }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ steps.ecr.outputs.repository_url }}:latest \
+            -f src/catalog-api/Dockerfile \
+            src/catalog-api
+
+      - name: Push image to ECR
+        run: |
+          docker push ${{ steps.ecr.outputs.repository_url }}:latest
