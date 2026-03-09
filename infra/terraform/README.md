@@ -60,6 +60,8 @@ terraform plan
 |-------|------|-----------|
 | **network-core** | VPC, subnety, IGW, NAT, route tables, SG | — |
 | **network-endpoints** (W07) | Gateway (S3, DynamoDB), Interface (Secrets, SSM), Flow Logs | outputy network-core |
+| **ecr** (W10) | Repozytorium ECR, lifecycle policy | — |
+| **apprunner** (W10) | Serwis App Runner (ECR source), IAM access role | output ecr |
 
 ## Powiązane dokumenty
 

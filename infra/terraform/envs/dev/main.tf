@@ -1,6 +1,7 @@
 # envs/dev — konfiguracja środowiska dev
 # W06-T03: moduł network-core
 # W07-T02: moduł network-endpoints
+# W10-T02: moduł ecr + apprunner (catalog-api)
 
 provider "aws" {
   region = var.region
@@ -25,6 +26,50 @@ module "network_endpoints" {
   private_route_table_id = module.network_core.private_route_table_id
   private_subnet_ids     = module.network_core.private_subnet_ids
   sg_app_id              = module.network_core.sg_ecs_id
+
+  name_prefix = "orderflow-dev"
+  tags        = {}
+}
+
+# --- W10-T02: ECR + App Runner (catalog-api) ---
+
+module "ecr_catalog_api" {
+  source = "../../modules/ecr"
+
+  repository_name = "catalog-api"
+  name_prefix     = "orderflow-dev"
+
+  lifecycle_policy_json = jsonencode({
+    rules = [
+      {
+        rulePriority = 1
+        description  = "Keep last 5 images"
+        selection = {
+          tagStatus   = "any"
+          countType   = "imageCountMoreThan"
+          countNumber = 5
+        }
+        action = {
+          type = "expire"
+        }
+      }
+    ]
+  })
+  tags = {}
+}
+
+module "apprunner_catalog_api" {
+  source = "../../modules/apprunner"
+
+  service_name       = "catalog-api"
+  ecr_repository_url = module.ecr_catalog_api.repository_url
+  image_tag          = "latest"
+  port               = 8080
+  health_check_path  = "/health"
+
+  runtime_environment_variables = {
+    ASPNETCORE_ENVIRONMENT = "Development"
+  }
 
   name_prefix = "orderflow-dev"
   tags        = {}
