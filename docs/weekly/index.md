@@ -4,11 +4,11 @@
 Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of truth**, a ten plik służy do nawigacji i odzyskiwania kontekstu.
 
 ## Aktualny tydzień
-- WeekId: `W10`
-- Status: `W_TRAKCIE`
-- Aktywny task: `W10-T02`
+- WeekId: `W11`
+- Status: `TODO`
+- Aktywny task: `W11-T01`
 - Blocker: `brak`
-- Next step (1): `W10-T02 — Wdróż serwis catalog-api do App Runner (ECR lub konsola)`
+- Next step (1): `W11-T01 — Spisz model odpowiedzialności w Elastic Beanstalk i porównaj go do App Runner`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -23,7 +23,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W07 | DONE | - | - | `docs/weekly/W07/` |
 | W08 | DONE | - | - | `docs/weekly/W08/` |
 | W09 | DONE | - | - | `docs/weekly/W09/` |
-| W10 | W_TRAKCIE | W10-T02 | brak | `docs/weekly/W10/` |
+| W10 | PARTIAL | - | - | `docs/weekly/W10/` |
 | W11 | TODO | - | - | `docs/weekly/W11/` |
 | W12 | TODO | - | - | `docs/weekly/W12/` |
 | W13 | TODO | - | - | `docs/weekly/W13/` |
@@ -43,3 +43,4 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 - Nie duplikuj tu pełnych planów tygodni.
 - Aktualizuj tylko status operacyjny i linki.
 - Szczegóły są w `docs/weekly/Wxx/*`.
+

@@ -49,6 +49,9 @@ app.MapGet("/api/catalog", () => Results.Ok(Array.Empty<object>()))
 app.MapGet("/health", () => Results.Ok(new { status = "Healthy", service = appName, environment }))
     .WithName("Health");
 
+Log.ForContext("LogSource", "Application").ForContext("EventType", "Startup")
+    .Information("Catalog-api started; environment: {Environment}", environment);
+
 try
 {
     app.Run();
