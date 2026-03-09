@@ -5,10 +5,10 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 
 ## Aktualny tydzień
 - WeekId: `W10`
-- Status: `TODO`
-- Aktywny task: —
+- Status: `W_TRAKCIE`
+- Aktywny task: `W10-T02`
 - Blocker: `brak`
-- Next step (1): `W10-T01 — Dockerfile dla wybranego API (catalog-api lub orders-api); App Runner deploy`
+- Next step (1): `W10-T02 — Wdróż serwis catalog-api do App Runner (ECR lub konsola)`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -23,7 +23,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W07 | DONE | - | - | `docs/weekly/W07/` |
 | W08 | DONE | - | - | `docs/weekly/W08/` |
 | W09 | DONE | - | - | `docs/weekly/W09/` |
-| W10 | TODO | - | - | `docs/weekly/W10/` |
+| W10 | W_TRAKCIE | W10-T02 | brak | `docs/weekly/W10/` |
 | W11 | TODO | - | - | `docs/weekly/W11/` |
 | W12 | TODO | - | - | `docs/weekly/W12/` |
 | W13 | TODO | - | - | `docs/weekly/W13/` |

@@ -1,0 +1,11 @@
+# W10-T01 — .dockerignore dla catalog-api
+# Ogranicza kontekst builda (szybszy build, mniejsze obrazy)
+
+**/bin/
+**/obj/
+**/*.Tests/
+**/.git/
+**/.vs/
+**/*.user
+**/Dockerfile*
+**/.dockerignore
