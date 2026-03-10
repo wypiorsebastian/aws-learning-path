@@ -4,11 +4,11 @@
 Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of truth**, a ten plik służy do nawigacji i odzyskiwania kontekstu.
 
 ## Aktualny tydzień
-- WeekId: `W11`
-- Status: `TODO`
-- Aktywny task: `W11-T01`
+- WeekId: `W12`
+- Status: `W_TRAKCIE`
+- Aktywny task: `W12-T03`
 - Blocker: `brak`
-- Next step (1): `W11-T01 — Spisz model odpowiedzialności w Elastic Beanstalk i porównaj go do App Runner`
+- Next step (1): `W12-T03 — Pipeline build/push image do ECR (OIDC)`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -24,8 +24,8 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W08 | DONE | - | - | `docs/weekly/W08/` |
 | W09 | DONE | - | - | `docs/weekly/W09/` |
 | W10 | PARTIAL | - | - | `docs/weekly/W10/` |
-| W11 | TODO | - | - | `docs/weekly/W11/` |
-| W12 | TODO | - | - | `docs/weekly/W12/` |
+| W11 | SKIPPED | — | zawieszony | `docs/weekly/W11/` |
+| W12 | W_TRAKCIE | W12-T03 | brak | `docs/weekly/W12/` |
 | W13 | TODO | - | - | `docs/weekly/W13/` |
 | W14 | TODO | - | - | `docs/weekly/W14/` |
 | W15 | TODO | - | - | `docs/weekly/W15/` |

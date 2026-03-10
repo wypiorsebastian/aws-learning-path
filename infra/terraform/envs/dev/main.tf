@@ -75,3 +75,30 @@ module "apprunner_catalog_api" {
   tags        = {}
 }
 
+# --- W12-T02: ECR dla orders-api (Fargate) — osobne repo, ten sam moduł ---
+
+module "ecr_orders_api" {
+  source = "../../modules/ecr"
+
+  repository_name = "orders-api"
+  name_prefix     = "orderflow-dev"
+
+  lifecycle_policy_json = jsonencode({
+    rules = [
+      {
+        rulePriority = 1
+        description  = "Keep last 5 images"
+        selection = {
+          tagStatus   = "any"
+          countType   = "imageCountMoreThan"
+          countNumber = 5
+        }
+        action = {
+          type = "expire"
+        }
+      }
+    ]
+  })
+  tags = {}
+}
+
