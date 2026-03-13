@@ -3,8 +3,18 @@
 # W07-T02: moduł network-endpoints
 # W10-T02: moduł ecr + apprunner (catalog-api)
 
+// envs/dev — root środowiska dev:
+// - provider
+// - locals (np. name_prefix)
+// - wywołania modułów z infra/terraform/modules/*
+
 provider "aws" {
   region = var.region
+}
+
+locals {
+  // Prefix nazw zasobów dla środowiska dev
+  name_prefix = "orderflow-dev"
 }
 
 module "network_core" {
@@ -14,7 +24,7 @@ module "network_core" {
   azs                  = ["eu-central-1a", "eu-central-1b"]
   public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidrs = ["10.0.11.0/24", "10.0.12.0/24"]
-  name_prefix          = "orderflow-dev"
+  name_prefix          = local.name_prefix
   enable_nat_gateway   = true
   tags                 = {}
 }
@@ -27,7 +37,7 @@ module "network_endpoints" {
   private_subnet_ids     = module.network_core.private_subnet_ids
   sg_app_id              = module.network_core.sg_ecs_id
 
-  name_prefix = "orderflow-dev"
+  name_prefix = local.name_prefix
   tags        = {}
 }
 
@@ -37,7 +47,7 @@ module "ecr_catalog_api" {
   source = "../../modules/ecr"
 
   repository_name = "catalog-api"
-  name_prefix     = "orderflow-dev"
+  name_prefix     = local.name_prefix
 
   lifecycle_policy_json = jsonencode({
     rules = [
@@ -71,7 +81,7 @@ module "apprunner_catalog_api" {
     ASPNETCORE_ENVIRONMENT = "Development"
   }
 
-  name_prefix = "orderflow-dev"
+  name_prefix = local.name_prefix
   tags        = {}
 }
 
@@ -81,7 +91,7 @@ module "ecr_orders_api" {
   source = "../../modules/ecr"
 
   repository_name = "orders-api"
-  name_prefix     = "orderflow-dev"
+  name_prefix     = local.name_prefix
 
   lifecycle_policy_json = jsonencode({
     rules = [

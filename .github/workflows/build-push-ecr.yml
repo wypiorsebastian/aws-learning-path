@@ -1,0 +1,92 @@
+# Reusable workflow: Build obrazu Docker i push do Amazon ECR (OIDC)
+# Wywołanie z workflowów per-serwis (orders-api-ecr-push.yml, catalog-api-ecr-push.yml, itd.)
+# Zgodne z: GitHub Actions workflow_call, AWS OIDC (brak long-lived credentials)
+# Wymaga: vars.AWS_GITHUB_ACTIONS_ROLE_ARN (rola z trust policy na GitHub OIDC + uprawnienia ECR)
+
+name: build-push-ecr
+
+on:
+  workflow_call:
+    inputs:
+      ecr_repository:
+        description: 'Nazwa repozytorium ECR (np. orders-api, catalog-api)'
+        required: true
+        type: string
+      dockerfile_path:
+        description: 'Ścieżka do Dockerfile (np. src/orders-api/Dockerfile)'
+        required: true
+        type: string
+      context_path:
+        description: 'Kontekst builda Docker (np. src/orders-api)'
+        required: true
+        type: string
+      aws_region:
+        description: 'Region AWS'
+        required: false
+        type: string
+        default: 'eu-central-1'
+    outputs:
+      image_uri:
+        description: 'Pełny URI obrazu z tagiem sha (do ECS task definition)'
+        value: ${{ jobs.build-and-push.outputs.image_uri }}
+      image_uri_latest:
+        description: 'Pełny URI obrazu z tagiem latest'
+        value: ${{ jobs.build-and-push.outputs.image_uri_latest }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: dev
+    outputs:
+      image_uri: ${{ steps.meta.outputs.image_uri }}
+      image_uri_latest: ${{ steps.meta.outputs.image_uri_latest }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Get ECR registry URL and image tags
+        id: meta
+        run: |
+          ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+          REGISTRY="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+          SHORT_SHA="${GITHUB_SHA::7}"
+          echo "registry=${REGISTRY}" >> $GITHUB_OUTPUT
+          echo "repository_url=${REGISTRY}/${{ inputs.ecr_repository }}" >> $GITHUB_OUTPUT
+          echo "image_uri=${REGISTRY}/${{ inputs.ecr_repository }}:sha-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "image_uri_latest=${REGISTRY}/${{ inputs.ecr_repository }}:latest" >> $GITHUB_OUTPUT
+          echo "tag_sha=sha-${SHORT_SHA}" >> $GITHUB_OUTPUT
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region ${{ inputs.aws_region }} | \
+            docker login --username AWS --password-stdin ${{ steps.meta.outputs.registry }}
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --platform linux/amd64 \
+            -t ${{ steps.meta.outputs.repository_url }}:${{ steps.meta.outputs.tag_sha }} \
+            -t ${{ steps.meta.outputs.repository_url }}:latest \
+            -f ${{ inputs.dockerfile_path }} \
+            ${{ inputs.context_path }}
+
+      - name: Push image to ECR (sha tag)
+        run: |
+          docker push ${{ steps.meta.outputs.repository_url }}:${{ steps.meta.outputs.tag_sha }}
+
+      - name: Push image to ECR (latest)
+        run: |
+          docker push ${{ steps.meta.outputs.repository_url }}:latest

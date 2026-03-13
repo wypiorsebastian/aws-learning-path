@@ -6,9 +6,9 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 ## Aktualny tydzień
 - WeekId: `W12`
 - Status: `W_TRAKCIE`
-- Aktywny task: `W12-T03`
+- Aktywny task: `W12-T04`
 - Blocker: `brak`
-- Next step (1): `W12-T03 — Pipeline build/push image do ECR (OIDC)`
+- Next step (1): `W12-T04 — Runbook build/push + troubleshooting image build`
 
 ## Tygodnie (skrót)
 | WeekId | Status | Aktywny task | Blocker | Link |
@@ -25,7 +25,7 @@ Szybki podgląd stanu projektu tygodniowego. **Roadmapa pozostaje source of trut
 | W09 | DONE | - | - | `docs/weekly/W09/` |
 | W10 | PARTIAL | - | - | `docs/weekly/W10/` |
 | W11 | SKIPPED | — | zawieszony | `docs/weekly/W11/` |
-| W12 | W_TRAKCIE | W12-T03 | brak | `docs/weekly/W12/` |
+| W12 | W_TRAKCIE | W12-T04 | brak | `docs/weekly/W12/` |
 | W13 | TODO | - | - | `docs/weekly/W13/` |
 | W14 | TODO | - | - | `docs/weekly/W14/` |
 | W15 | TODO | - | - | `docs/weekly/W15/` |

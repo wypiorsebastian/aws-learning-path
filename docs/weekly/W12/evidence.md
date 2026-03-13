@@ -13,6 +13,7 @@ Dowody wykonania DoD i tasków (zgodnie z roadmapą).
 - [x] **W12-T01:** Dockerfile orders-api: `src/orders-api/Dockerfile`, `.dockerignore`; analiza w `docs/lessons/W12-dockerfile-design-orders-api.md`; weryfikacja build + /health OK
 - [x] **W12-T02:** ECR repo orders-api: moduł `ecr_orders_api` w envs/dev/main.tf, output `ecr_orders_api_url`, lifecycle keep last 5
 - [ ] ECR repo widoczne po `terraform apply` (Terraform output / konsola)
+- [x] **W12-T03:** Workflow build/push: `.github/workflows/build-push-ecr.yml` (reusable), `.github/workflows/orders-api-ecr-push.yml`; projekt w `docs/workflows/W12-ecr-build-push-workflow-design.md`
 - [ ] Lifecycle policy włączona (screenshot lub opis)
 - [ ] Min. 1 obraz w ECR z tagiem (np. commit SHA)
 - [ ] Link do udanego runu workflow build/push

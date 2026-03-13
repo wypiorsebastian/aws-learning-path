@@ -51,7 +51,7 @@
 ### W12-T03 — Pipeline build/push image do ECR (OIDC)
 
 - **TaskId:** `W12-T03`
-- **Status:** `TODO`
+- **Status:** `DONE`
 - **Priorytet:** `P1`
 - **Typ:** `CI/CD`
 - **Cel:** Workflow GitHub Actions: build obrazu, tag (np. commit SHA), push do ECR z użyciem OIDC (bez static keys).

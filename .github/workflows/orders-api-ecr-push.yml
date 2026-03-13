@@ -1,0 +1,22 @@
+# Orders-api — Build & Push to ECR (W12-T03)
+# Wywołuje reusable workflow build-push-ecr z parametrami dla orders-api.
+# Trigger: push do master w src/orders-api/** lub workflow_dispatch.
+# Wymaga: vars.AWS_GITHUB_ACTIONS_ROLE_ARN z uprawnieniami ECR na repozytorium orders-api.
+
+name: orders-api — Build & Push to ECR
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: ['src/orders-api/**']
+
+jobs:
+  build-and-push:
+    uses: ./.github/workflows/build-push-ecr.yml
+    with:
+      ecr_repository: orders-api
+      dockerfile_path: src/orders-api/Dockerfile
+      context_path: src/orders-api
+      aws_region: eu-central-1
+    secrets: inherit
